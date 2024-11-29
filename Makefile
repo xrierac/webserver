@@ -7,7 +7,8 @@ SRC_DIR  := ./src
 OBJ_DIR  := ./obj
 
 SRCS	:= $(SRC_DIR)/main.cpp \
-			$(SRC_DIR)/Server.cpp \
+			$(SRC_DIR)/HttpParser.cpp \
+			#$(SRC_DIR)/Server.cpp \
 			# $(SRC_DIR)/Request.cpp \
 			# $(SRC_DIR)/Response.cpp \
 			# $(SRC_DIR)/Location.cpp \
@@ -20,9 +21,8 @@ OBJS	:= $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 
 INC_FLAG := -I include
 
-$(shell mkdir -p $(OBJ_DIR))
-
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(INC_FLAG) -o $@ -c $< && printf "Compiling: $(notdir $<)\n"
 
 $(NAME): $(OBJS)
