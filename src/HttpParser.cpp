@@ -16,7 +16,8 @@ std::string HttpParser::getBody() { return _body;}
 
 void	HttpParser::checkReqLineErrors()
 {
-
+	if (_request.size() > MAX_REQ_LINE_SIZE)
+		throw std::invalid_argument("Request line too long.");
 }
 
 size_t HttpParser::parseMethod()
@@ -77,9 +78,14 @@ size_t HttpParser::parseHeaders(size_t index)
 		while (iter < end_line && _request[iter] == ' ')
 			iter++;
 		index = iter;
-		while (iter < end_line && _request[iter] != ' ')
-			iter++;
-		std::string_view value = _request.substr(index, iter - index);
+		std::string_view value = _request.substr(index, end_line - index);
+		if (_request[end_line - 1] == ' ')
+		{
+			iter = 1;
+			while (_request[end_line - iter - 1] == ' ')
+				iter++;
+			value.remove_suffix(iter);
+		}
 		_headers.emplace(key, value);
 		index = end_line + 2;
 	}
