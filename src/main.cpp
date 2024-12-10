@@ -29,8 +29,9 @@ int main() {
     std::string request2 =
         "POST /submit HTTP/1.1\r\n"
         "Host: localhost:8080\r\n"
-        "Content-Type: application/json               \r\n"
-        "Content-Length: 27\r\n"
+        "Content-Type: multipart/form-data; boundary=------------------------a3a1875fe37fee60     \r\n"
+        //"Content-Type: application/json               \r\n"
+        "Content-Length: 189\r\n"
         "\r\n"
         "{\"username\": \"john_doe\"}";
 

@@ -8,6 +8,7 @@ OBJ_DIR  := ./obj
 
 SRCS	:= $(SRC_DIR)/main.cpp \
 			$(SRC_DIR)/HttpParser.cpp \
+			#$(SRC_DIR)/CharacterTypes.cpp \
 			#$(SRC_DIR)/Server.cpp \
 			# $(SRC_DIR)/Request.cpp \
 			# $(SRC_DIR)/Response.cpp \
